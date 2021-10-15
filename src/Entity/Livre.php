@@ -49,6 +49,11 @@ class Livre
      */
     private $genres;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $genre;
+
     public function __construct()
     {
         $this->genres = new ArrayCollection();
@@ -142,6 +147,18 @@ class Livre
         if ($this->genres->removeElement($genre)) {
             $genre->removeType($this);
         }
+
+        return $this;
+    }
+
+    public function getGenre(): ?string
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(string $genre): self
+    {
+        $this->genre = $genre;
 
         return $this;
     }
