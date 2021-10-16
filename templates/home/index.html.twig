@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="text-center">
+		<h1>Bienvenue à la Médiathèque</h1>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+			      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+			      fugiat nulla pariatur.
+		</p>
+	</div>
+	<div class="text-center" style="margin-top: 5%;">
+			<button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Romans</button>
+      <button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Policier</button>
+      <button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Amour</button>
+      <button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Autobiographique</button>
+      <button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Thriller</button>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4 " style="margin-top: 5%;justify-content: space-between">
+		{% for livres in livre %}
+			<div class="card" style="width: 18rem;padding: 0;margin-top: 10px">
+        <img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ livres.getTitle }}</h5>
+          <p class="card-text">{{ livres.getDescription}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{livres.getGenre}}</li>
+          <li class="list-group-item">Parution le: {{ livres.getDateParution |date("m/d/y") }}</li>
+          {% if livres.getDispo == true %}
+          <li class="list-group-item">Ce livre est disponible</li>
+          {% else %}
+          <li class="list-group-item">Ce livre n'est pas disponible</li>
+          {% endif %}
+        </ul>
+        <div class="card-body">
+          {% if livres.getDispo == true %}
+            <a href="#" class="btn btn-primary">Emprunter le !</a>
+          {% else %}    
+            <a href="#" class="btn btn-secondary disabled">Emprunter le !</a>      
+          {% endif %}
+        </div>
+      </div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="d-flex justify-content-center" style="margin-top 5px">
+    {{ knp_pagination_render(livre) }}
+</div>
+
+
+
+{% endblock %}

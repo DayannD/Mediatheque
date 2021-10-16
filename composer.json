@@ -13,6 +13,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/orm": "^2.10",
         "fakerphp/faker": "^1.16",
+        "knplabs/knp-paginator-bundle": "^5.7",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "5.3.*",
@@ -40,6 +41,7 @@
         "symfony/twig-bundle": "5.3.*",
         "symfony/validator": "5.3.*",
         "symfony/web-link": "5.3.*",
+        "symfony/webpack-encore-bundle": "^1.12",
         "symfony/yaml": "5.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
