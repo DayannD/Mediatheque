@@ -37,3 +37,15 @@ Charger les fixtures écrites
 ```bash
 $ php bin/console doctrine:fixtures:load
 ```
+### Utilisation du bundle KnpPaginator
+
+https://symfony.com/doc/current/frontend.html
+### Utilisation de WebPackEncore
+
+https://symfony.com/doc/current/frontend.html
+
+### Création du test-coverage 
+
+```bash
+$ php bin/phpunit --coverage-html var/log/test/test-coverage
+```

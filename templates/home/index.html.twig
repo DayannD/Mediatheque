@@ -30,25 +30,35 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">{{livres.getGenre}}</li>
           <li class="list-group-item">Parution le: {{ livres.getDateParution |date("m/d/y") }}</li>
+        {% if app.user %}
           {% if livres.getDispo == true %}
           <li class="list-group-item">Ce livre est disponible</li>
+          </ul>
           {% else %}
           <li class="list-group-item">Ce livre n'est pas disponible</li>
+          </ul>
           {% endif %}
-        </ul>
-        <div class="card-body">
           {% if livres.getDispo == true %}
-            <a href="#" class="btn btn-primary">Emprunter le !</a>
-          {% else %}    
+          <div class="card-body">
+            <a href="/disable/{{ livres.getId }}" class="btn btn-primary">Emprunter le !</a>
+          {% else %} 
+          <div class="card-body">   
             <a href="#" class="btn btn-secondary disabled">Emprunter le !</a>      
           {% endif %}
+        {% else %}
+        <li class="list-group-item">Connecter vous pour emprunter</li>
+        </ul>
+        <div class="card-body">        
+            <a href="/disable/{{ livres.getId }}" class="btn btn-primary">Se connecter</a>
+        {% endif %}
         </div>
-      </div>
+      </div>         
 		{% endfor %}
+
 	</div>
 </div>
 
-<div class="d-flex justify-content-center" style="margin-top 5px">
+<div class="d-flex justify-content-center" style="margin-top: 20px">
     {{ knp_pagination_render(livre) }}
 </div>
 

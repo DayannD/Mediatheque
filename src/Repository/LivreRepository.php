@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Livre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,9 +15,24 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LivreRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    protected $manager;
+
+    public function __construct(ManagerRegistry $registry,EntityManagerInterface $manager)
     {
         parent::__construct($registry, Livre::class);
+        $this->manager = $manager;
+    }
+
+    public function disableBook($id)
+    {   
+        $this->createQueryBuilder('l')
+            ->update(Livre::class, 'l')
+            ->set('l.dispo', '0')
+            ->Where('l.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**
