@@ -1,14 +1,14 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Médiathèque</a>
+        <a class="navbar-brand" href="/">Médiathèque</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="/home">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Search</a>
@@ -42,17 +42,17 @@
           </a>
           <ul id="profile" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
             <li>
-              <a class="dropdown-item" href="#">My profile</a>
+              <a class="dropdown-item" href="#">Message</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Mes emprunt</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="/logout">Logout</a>
             </li>
           </ul>
           {% else %}
-            <a class=" d-flex align-items-end hidden-arrow" href="#" role="button">Se connecter</a>
+            <a class=" d-flex align-items-end hidden-arrow" href="/login" role="button">Se connecter</a>
           {% endif %}
         </div>
 

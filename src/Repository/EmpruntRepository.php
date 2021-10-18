@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Emprunt;
+use App\Entity\Livre;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -13,16 +16,37 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Emprunt[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class EmpruntRepository extends ServiceEntityRepository
-{
-    public function __construct(ManagerRegistry $registry)
+{   
+    private $manager;
+
+    public function __construct(ManagerRegistry $registry,EntityManagerInterface $manager)
     {
         parent::__construct($registry, Emprunt::class);
+        $this->manager = $manager;
+    }
+
+
+    public function loan($id,$user)
+    {
+        $date = new DateTime();
+        $emprunt = new Emprunt();
+
+        $livre = $this->manager->find(Livre::class, $id);
+
+        $emprunt->setNameLivre($livre)
+                ->setEmail($user)
+                ->setDateEmprunt($date)
+                ;
+        $this->manager->persist($emprunt);
+        $this->manager->flush();
+
     }
 
     // /**
     //  * @return Emprunt[] Returns an array of Emprunt objects
     //  */
     /*
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('e')
