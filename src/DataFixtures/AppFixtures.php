@@ -69,6 +69,7 @@ class AppFixtures extends Fixture
             $livre = new Livre();
 
             $livre->setTitle($faker->name())
+                  ->setAuteur($faker->name())
                   ->setDateParution($faker->dateTime())
                   ->setDescription($faker->paragraph(4))
                   ->setFile($faker->mimeType())
@@ -94,6 +95,8 @@ class AppFixtures extends Fixture
             $emprunt->setEmail($faker->unique()->randomElement($users))
                     ->setNameLivre($faker->unique()->randomElement($livres))
                     ->setDateEmprunt($faker->dateTime())
+                    ->setIsRendering($faker->boolean())
+                    ->setIsLoan($faker->boolean())
                     ;
         
         $manager->persist($emprunt);

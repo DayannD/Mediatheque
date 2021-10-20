@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <div class="container text-center">
+        <h1>Vos emprunt</h1>
+    {% if emprunt is empty %}
+    
+        <p>Vous n'avez pas d'emprunt</p>
+
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Livre</th>
+                <th scope="col">Date d'emprunt</th>
+                <th scope="col">Emprunter</th>
+                <th scope="col">le</th>
+                <th scope="col">rendu</th>
+                <th scope="col">le</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emprunts in emprunt %}
+                    <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                        <td>{{ emprunts.getNameLivre }}</td>
+                        <td>{{ emprunts.getDateEmprunt | date('d-m-Y')}}</td>
+                        <td>{{ emprunts.getIsLoan }}</td>
+
+                        {% if emprunts.getLoanAt is not null %}
+                            <td>{{ emprunts.getLoanAt | date('d-m-Y') }}</td>
+                        {% else %}
+                              <td>Pas encore récupérer</td>  
+                        {% endif %}
+
+                        <td>{{ emprunts.getIsRendering }}</td>
+
+                        {% if emprunts.getRenderingAt is not null %}
+                            <td>{{ emprunts.getRenderingAt| date('d-m-Y') }}</td>
+                        {% else %}
+                              <td>Pas encore rendu</td>  
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% for emprunts in emprunt %}
+            {% if emprunts.getLoanAt is not null %}
+                {% set leftDays=date(emprunts.getLoanAt).diff(date("now")) %}
+                {% if leftDays.days >= 3 %}
+                    <h2>N'oubliez pas de rendre {{emprunts.getNameLivre}}</h2>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endblock %}

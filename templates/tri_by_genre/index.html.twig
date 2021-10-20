@@ -11,14 +11,6 @@
 			      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 			      fugiat nulla pariatur.
 		</p>
-
-    <p>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-		</p>
 	</div>
 	<div class="text-center" style="margin-top: 5%;">
 			<a href="/Romans"><button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Romans</button></a>
@@ -26,7 +18,7 @@
 			<a href="/Amour"><button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Amour</button></a>
 			<a href="/Autobiographique"><button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Autobiographique</button></a>
 			<a href="/thriller"><button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Thriller</button></a>
-			<a href="/fiction"><button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">fiction</button></a>
+			<a href="/fiction"><button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Fiction</button></a>
   </div>
   <div class="row row-cols-1 row-cols-md-3 g-4 " style="margin-top: 5%;justify-content: space-between">
 		{% for livres in livre %}
@@ -34,7 +26,6 @@
         <img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ livres.getTitle }}</h5>
-          <p class="card-text text-muted">{{ livres.getAuteur }}</p>
           <p class="card-text">{{ livres.getDescription}}</p>
         </div>
         <ul class="list-group list-group-flush">

@@ -36,10 +36,34 @@ class EmpruntRepository extends ServiceEntityRepository
         $emprunt->setNameLivre($livre)
                 ->setEmail($user)
                 ->setDateEmprunt($date)
+                ->setIsLoan(false)
+                ->setIsRendering(false)
                 ;
         $this->manager->persist($emprunt);
         $this->manager->flush();
 
+    }
+
+    public function empruntProfil($id)
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e')
+            ->where('e.email = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function notifDate($id)
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e.loanAt')
+            ->where('e.email = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**

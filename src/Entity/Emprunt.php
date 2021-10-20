@@ -33,6 +33,26 @@ class Emprunt
      */
     private $name_livre;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isLoan = false;
+
+     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $renderingAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $loanAt;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isRendering;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,4 +93,52 @@ class Emprunt
 
         return $this;
     }
+
+    public function getIsLoan(): ?bool
+    {
+        return $this->isLoan;
+    }
+
+    public function setIsLoan(bool $isLoan): self
+    {
+        $this->isLoan = $isLoan;
+
+        return $this;
+    }
+        public function getRenderingAt(): ?\DateTimeInterface
+    {
+        return $this->renderingAt;
+    }
+
+    public function setRenderingAt(?\DateTimeInterface $renderingAt): self
+    {
+        $this->renderingAt = $renderingAt;
+
+        return $this;
+    }
+
+    public function getLoanAt(): ?\DateTimeInterface
+    {
+        return $this->loanAt;
+    }
+
+    public function setLoanAt(?\DateTimeInterface $loanAt): self
+    {
+        $this->loanAt = $loanAt;
+
+        return $this;
+    }
+
+    public function getIsRendering(): ?bool
+    {
+        return $this->isRendering;
+    }
+
+    public function setIsRendering(bool $isRendering): self
+    {
+        $this->isRendering = $isRendering;
+
+        return $this;
+    }
+
 }
