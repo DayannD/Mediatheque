@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="text-center">
+        {{form_start(form)}}
+            {{form_widget(form)}}
+        {{form_end(form)}}
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success">
+					{{ message }}
+				</div>
+			{% endfor %}
+	<div class="text-center" style="margin-top: 5%;">
+		<a href="/Romans">
+			<button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Romans</button>
+		</a>
+		<a href="/Policier">
+			<button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Policier</button>
+		</a>
+		<a href="/Amour">
+			<button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Amour</button>
+		</a>
+		<a href="/Autobiographique">
+			<button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Autobiographique</button>
+		</a>
+		<a href="/thriller">
+			<button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Thriller</button>
+		</a>
+		<a href="/fiction">
+			<button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">fiction</button>
+		</a>
+	</div>
+	<div class="row row-cols-1 row-cols-md-3 g-4 " style="margin-top: 5%;justify-content: space-between">
+     {% if isSubmitte == false %}
+        {% else %}          
+		{% for livres in livre %}
+			<div class="card" style="width: 18rem;padding: 0;margin-top: 10px">
+				<img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">{{ livres.getTitle }}</h5>
+					<p class="card-text text-muted">{{ livres.getAuteur }}</p>
+					<p class="card-text">{{ livres.getDescription}}</p>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">{{livres.getGenre}}</li>
+					<li class="list-group-item">Parution le:
+						{{ livres.getDateParution |date("m/d/y") }}</li>
+					{% if app.user %}
+						{% if livres.getDispo == true %}
+							<li class="list-group-item">Ce livre est disponible</li>
+						</ul>
+					{% else %}
+						<li class="list-group-item">Ce livre n'est pas disponible</li>
+					</ul>
+				{% endif %}
+				{% if livres.getDispo == true %}
+					<div class="card-body">
+						<a href="/disable/{{ livres.getId }}" class="btn btn-primary">Emprunter le !</a>
+					{% else %}
+						<div class="card-body">
+							<a href="#" class="btn btn-secondary disabled">Emprunter le !</a>
+						{% endif %}
+					{% else %}
+						<li class="list-group-item">Connecter vous pour emprunter</li>
+					</ul>
+					<div class="card-body">
+						<a href="/disable/{{ livres.getId }}" class="btn btn-primary">Se connecter</a>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+    
+        <div class="d-flex justify-content-center" style="margin-top: 20px">
+        {{ knp_pagination_render(livre) }}
+        </div>
+  {% endif %}
+	</div>
+</div>
+
+{% endblock %}

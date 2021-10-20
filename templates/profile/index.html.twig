@@ -15,7 +15,7 @@
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Livre</th>
-                <th scope="col">Date d'emprunt</th>
+                <th scope="col">Date de demande d'emprunt</th>
                 <th scope="col">Emprunter</th>
                 <th scope="col">le</th>
                 <th scope="col">rendu</th>
@@ -51,7 +51,7 @@
         {% for emprunts in emprunt %}
             {% if emprunts.getLoanAt is not null %}
                 {% set leftDays=date(emprunts.getLoanAt).diff(date("now")) %}
-                {% if leftDays.days >= 3 %}
+                {% if leftDays.days >= 19 %}
                     <h2>N'oubliez pas de rendre {{emprunts.getNameLivre}}</h2>
                 {% endif %}
             {% endif %}

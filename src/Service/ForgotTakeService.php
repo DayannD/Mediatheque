@@ -9,8 +9,9 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class NotificationService 
+class ForgotTakeService 
 {
+  private $manager;
   private $livreRepository;
   private $empruntRepository;
 
@@ -21,15 +22,18 @@ class NotificationService
     $this->empruntRepository = $empruntRepository;
   }
 
-  public function notificationLoan($emprunt): bool
+  public function forgotTake($emprunt)
   {
     $now = new DateTime();
+    
     for ($i=0; $i < sizeof($emprunt) ; $i++) { 
-      $result = $now->diff($emprunt[$i]->getLoanAt(),true)->days;
-      if ($result > 19 && $emprunt[$i]->getIsLoan() == true) {
-        return true;
+      
+      $result = $now->diff($emprunt[$i]->getDateEmprunt(),true)->days;
+      if ($result > 3 && $emprunt[$i]->getIsLoan() == false) {
+        $this->livreRepository->resetBook($emprunt[$i]->getNameLivre());   
+        $this->empruntRepository->deleteEmprunt($emprunt[$i]->getId(),$emprunt[$i]->getNameLivre());
       }
     }
-    return false;
+    
   }
 }

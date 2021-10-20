@@ -35,6 +35,31 @@ class LivreRepository extends ServiceEntityRepository
         ;
     }
 
+    public function search($search)
+    {
+        return $this->createQueryBuilder('l')
+            ->select('l')
+            ->where('l.title = :search')
+            ->orWhere('l.genre = :search')
+            ->setParameter('search', $search)
+            ->getQuery()
+            ->getResult()
+            ;
+            
+    }
+
+    public function resetBook($id)
+    {
+        $this->createQueryBuilder('l')
+            ->update(Livre::class, 'l')
+            ->set('l.dispo', '1')
+            ->Where('l.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+        ;           
+    }
+
     // /**
     //  * @return Livre[] Returns an array of Livre objects
     //  */

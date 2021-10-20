@@ -13,8 +13,8 @@
 		</p>
 
     <p>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-danger">
                 {{ message }}
             </div>
         {% endfor %}

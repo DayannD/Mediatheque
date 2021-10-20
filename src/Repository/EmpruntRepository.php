@@ -66,6 +66,20 @@ class EmpruntRepository extends ServiceEntityRepository
             ;
     }
 
+    public function deleteEmprunt($id,$livre)
+    {
+        return $this->createQueryBuilder('em')
+        ->delete(Emprunt::class,'em')
+        ->where('em.id = :id')
+        ->andWhere('em.name_livre = :livre')
+        ->setParameter('id', $id)
+        ->setParameter('livre', $livre)
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+
+
     // /**
     //  * @return Emprunt[] Returns an array of Emprunt objects
     //  */
