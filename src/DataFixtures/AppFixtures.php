@@ -73,7 +73,7 @@ class AppFixtures extends Fixture
                   ->setDateParution($faker->dateTime())
                   ->setDescription($faker->paragraph(4))
                   ->setFile('livre_images.jpg')
-                  ->setDispo($faker->boolean())
+                  ->setDispo(true)
                   ->setGenre($faker->randomElement([
                       'Romans',
                       'Policier',
@@ -87,20 +87,7 @@ class AppFixtures extends Fixture
             $manager->persist($livre);
         }
 
-        // et pour finir quelque emprunt
-        for($i = 0; $i < 10; $i++){
 
-            $emprunt = new Emprunt();
-
-            $emprunt->setEmail($faker->unique()->randomElement($users))
-                    ->setNameLivre($faker->unique()->randomElement($livres))
-                    ->setDateEmprunt($faker->dateTime())
-                    ->setIsRendering($faker->boolean())
-                    ->setIsLoan($faker->boolean())
-                    ;
-        
-        $manager->persist($emprunt);
-        } 
         //je persist toute les données ,puis je les envoye à ma bdd avec le $symfony console d:f:l
         $manager->flush();
     }

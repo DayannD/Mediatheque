@@ -10,7 +10,7 @@ Médiathèque est un project donner par la formation Studi en vue du titre de De
  * Composer
  * Symfony CLI
  * MySQL
-
+ * XAMMP
 ### Lancer des tests
 
 ```bash
