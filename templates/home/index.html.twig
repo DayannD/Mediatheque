@@ -50,7 +50,7 @@
           {% endif %}
           {% if livres.getDispo == true %}
           <div class="card-body">
-            <a href="/disable/{{ livres.getId }}" class="btn btn-primary">Emprunter le !</a>
+            <a href="/disable/{{ livres.getId }}" class="btn btn-outline-success ">Emprunter le !</a>
           {% else %} 
           <div class="card-body">   
             <a href="#" class="btn btn-secondary disabled">Emprunter le !</a>      
@@ -59,7 +59,7 @@
         <li class="list-group-item">Connecter vous pour emprunter</li>
         </ul>
         <div class="card-body">        
-            <a href="/login" class="btn btn-primary">Se connecter</a>
+            <a href="/login" class="btn btn-outline-success ">Se connecter</a>
         {% endif %}
         </div>
       </div>         

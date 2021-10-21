@@ -21,6 +21,7 @@ class NotificationService
     $this->empruntRepository = $empruntRepository;
   }
 
+  //Vérifier si l'utilisateur a toujours pas rendu le livre après 3 semaines
   public function notificationLoan($emprunt): bool
   {
     $now = new DateTime();

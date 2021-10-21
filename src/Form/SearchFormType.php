@@ -22,7 +22,11 @@ class SearchFormType extends AbstractType
                     'placeholder' => 'Rechercher par titre ou par genre'
                     ]
             ])
-            ->add('Rechercher', SubmitType::class)
+            ->add('Rechercher', SubmitType::class,[
+                'attr' => [
+                            'class' => 'btn-outline-success '
+                ],
+            ])
         ;
     }
 
