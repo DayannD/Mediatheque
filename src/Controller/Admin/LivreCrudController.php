@@ -19,7 +19,7 @@ class LivreCrudController extends AbstractCrudController
         return Livre::class;
     }
 
-    
+    //Configuration de la parti livre
     public function configureFields(string $pageName): iterable
     {
         return [

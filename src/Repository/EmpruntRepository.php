@@ -25,9 +25,10 @@ class EmpruntRepository extends ServiceEntityRepository
         $this->manager = $manager;
     }
 
-
+    //Je j'hydrate ma function ave l'id du livre et le user
     public function loan($id,$user)
     {
+        //Pour crée un emprunt
         $date = new DateTime();
         $emprunt = new Emprunt();
 
@@ -44,6 +45,7 @@ class EmpruntRepository extends ServiceEntityRepository
 
     }
 
+    //Ma function pour afficher les emprunts à l'inscrit
     public function empruntProfil($id)
     {
         return $this->createQueryBuilder('e')
@@ -55,17 +57,19 @@ class EmpruntRepository extends ServiceEntityRepository
             ;
     }
 
-    public function notifDate($id)
-    {
-        return $this->createQueryBuilder('e')
-            ->select('e.loanAt')
-            ->where('e.email = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getResult()
-            ;
-    }
+    // //ma funtion pour vérifier
+    // public function notifDate($id)
+    // {
+    //     return $this->createQueryBuilder('e')
+    //         ->select('e.loanAt')
+    //         ->where('e.email = :id')
+    //         ->setParameter('id', $id)
+    //         ->getQuery()
+    //         ->getResult()
+    //         ;
+    // }
 
+    //ma function pour supprimer un emprunt
     public function deleteEmprunt($id,$livre)
     {
         return $this->createQueryBuilder('em')

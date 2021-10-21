@@ -23,15 +23,19 @@ class HomeController extends AbstractController
     EmpruntRepository $empruntRepository,
     ForgotTakeService $forgot,
     NotificationService $notificationService): Response
-    {
-        $data = new Livre();
-
+    {   
+        //Je récupère tout mes livres
         $data = $this->getDoctrine()->getRepository(Livre::class)->findAll();
         
+        //Si l'utilisateur est connecter
         if ($this->getUser()) {
+            //je vérifie sa demande d'emprunt,si elle date de plus de 3 jours ,je supprime la demande et rend le livre disponible
             $forgot->forgotTake($empruntRepository->empruntProfil($this->getUser()->getId()));
+           
+            //Je vérifie si le livre l'inscrit à un livre en sa possesion depuis plus de 3 semaines
             $notif = $notificationService->notificationLoan($empruntRepository->empruntProfil($this->getUser()->getId()));
-
+            
+            //si oui,un message flash s'affiche pour lui rappeller
             if ($notif) {
                 $this->addFlash(
                     'notice', 'Vous êtes en possesion de livre depuis plus de 3 semaines.Veuillez les rentres merci'

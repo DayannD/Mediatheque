@@ -13,9 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TriByGenreController extends AbstractController
 {
+    //page de tri par genre de livre
     #[Route('/{genre}', name: 'tri_by_genre')]
     public function index($genre,EntityManagerInterface $manager,PaginatorInterface $paginator,Request $request): Response
     {
+        //récupère la donnée envoyer dans l'url et j'affiche les livres voulu par l'inscrit
         $livre = $manager->getRepository(Livre::class)->findBy(array('genre'=> $genre));
 
         $livre = $paginator->paginate(

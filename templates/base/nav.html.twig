@@ -44,6 +44,11 @@
             <img src="https://mdbootstrap.com/img/new/avatars/2.jpg" class="rounded-circle" height="25" alt="" loading="lazy"/>
           </a>
           <ul id="profile" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+          {% if is_granted('ROLE_ADMIN') %}
+            <li>
+              <a class="dropdown-item" href="/admin">Admin</a>
+            </li>
+          {% endif %}
             <li>
               <a class="dropdown-item" href="/profile">Mes emprunt</a>
             </li>

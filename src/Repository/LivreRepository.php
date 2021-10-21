@@ -23,6 +23,7 @@ class LivreRepository extends ServiceEntityRepository
         $this->manager = $manager;
     }
 
+    //ma function pour rendre le livre indisponible
     public function disableBook($id)
     {   
         $this->createQueryBuilder('l')
@@ -48,6 +49,7 @@ class LivreRepository extends ServiceEntityRepository
             
     }
 
+    //ma function pour remettre le livre disponible
     public function resetBook($id)
     {
         $this->createQueryBuilder('l')

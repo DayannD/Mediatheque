@@ -23,6 +23,8 @@ class SearchController extends AbstractController
         $isSubmitte = false;
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            //je récupère les données envoyer dans mon formulaire pour faire la recherche
             $livre = $searchRepo->search($livre->get('title','genre')->getData());
             
             $livre = $paginator->paginate(
@@ -30,16 +32,8 @@ class SearchController extends AbstractController
                 $request->query->getInt('page',1),
                 8
             );
-            // if ($livre-> null) {
-            //     $this->addFlash(
-            //         'error',
-            //         'La recherche n\'a rien donner!'
-            //     );
-            // }
             $isSubmitte = true;
         }
-
-
         
         return $this->render('search/index.html.twig', [
             'livre' => $livre,

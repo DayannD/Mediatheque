@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchFormType extends AbstractType
 {
+    //mon formulaire de recherche
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

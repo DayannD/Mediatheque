@@ -4,19 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Emprunt;
 use App\Entity\Livre;
-use App\Repository\LivreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-
-use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -34,7 +28,7 @@ class EmpruntCrudController extends AbstractCrudController
         return Emprunt::class; 
         return Livre::class;  
     }
-
+    //J'affiche mes données a l'administrateur 
     public function configureFields(string $pageName): iterable
     {
 
@@ -51,7 +45,7 @@ class EmpruntCrudController extends AbstractCrudController
 
         ];
     }
-
+    //J'organise les emprunts de façon que les derniers livre emprunter soit les premiers afficher pour l'administrateur
     public function configureCrud(Crud $crud): crud
     {
         if ('isRendering' == false) {
@@ -63,6 +57,7 @@ class EmpruntCrudController extends AbstractCrudController
         return $crud;
     }
 
+    //Quand l'employé valide la remise du livre , le livre redevien dispo automatiquement
     public function configureActions(Actions $actions): Actions
     {
         $resetBook = Action::new('dispo', 'Remettre le livre en ligne')
@@ -70,6 +65,7 @@ class EmpruntCrudController extends AbstractCrudController
             ->displayIf(function($entity) {
 
                 if ($entity->getIsRendering() == true) {
+
                     $id = $entity->getNameLivre()->getId();
 
                     $livre = $this->getDoctrine()->getRepository(Livre::class)->find($id);

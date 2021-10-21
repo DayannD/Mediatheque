@@ -29,7 +29,7 @@ class AppFixtures extends Fixture
         $date = new DateTime();
         $user = new User();
         $users= [];
-        
+        //Je crée un utilisateur de test avec le rôle admin pour me connecter
         $user->setEmail('test@test.com')
              ->setLastname('Robert')
              ->setBornDate($date)
@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
         $users[] = $user;
         $manager->persist($user);
 
-
+        //Je crée des utilisateur
         for($i = 0; $i < 10; $i++){
 
             $date = new DateTime();
@@ -62,17 +62,17 @@ class AppFixtures extends Fixture
         $manager->persist($user);
 
         }
-
+        //les Livres
         $livres = [];
         for($i = 0; $i < 30; $i++){
             
             $livre = new Livre();
 
-            $livre->setTitle($faker->name())
+            $livre->setTitle($faker->word(2,true))
                   ->setAuteur($faker->name())
                   ->setDateParution($faker->dateTime())
                   ->setDescription($faker->paragraph(4))
-                  ->setFile($faker->mimeType())
+                  ->setFile('livre_images.jpg')
                   ->setDispo($faker->boolean())
                   ->setGenre($faker->randomElement([
                       'Romans',
@@ -87,7 +87,7 @@ class AppFixtures extends Fixture
             $manager->persist($livre);
         }
 
-
+        // et pour finir quelque emprunt
         for($i = 0; $i < 10; $i++){
 
             $emprunt = new Emprunt();
@@ -101,7 +101,7 @@ class AppFixtures extends Fixture
         
         $manager->persist($emprunt);
         } 
-
+        //je persist toute les données ,puis je les envoye à ma bdd avec le $symfony console d:f:l
         $manager->flush();
     }
 }
