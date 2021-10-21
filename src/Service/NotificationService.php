@@ -24,12 +24,24 @@ class NotificationService
   public function notificationLoan($emprunt): bool
   {
     $now = new DateTime();
-    for ($i=0; $i < sizeof($emprunt) ; $i++) { 
-      $result = $now->diff($emprunt[$i]->getLoanAt(),true)->days;
-      if ($result > 19 && $emprunt[$i]->getIsLoan() == true) {
-        return true;
-      }
-    }
+
+      // for ($i=0; $i < sizeof($emprunt) ; $i++) { 
+        
+      //   $result = $now->diff($emprunt[$i]->getLoanAt(),true)->days;
+      //   if ($result > 19 && $emprunt[$i]->getIsLoan() == true) {
+      //     return true;
+      //   }
+      // }
+      // for ($i=0; $i < sizeof($emprunt) ; $i++) { 
+      //   $time = $emprunt[$i]->getLoanAt();
+      //   $now = $now->format('Y-m-d');
+      //   $time = $time->format('Y-m-d');
+
+      //   $result =$now - $time;
+      //   if ($result > 19 && $emprunt[$i]->getIsLoan() == true) {
+      //     return true;
+      //   }   
+      // }
     return false;
   }
 }

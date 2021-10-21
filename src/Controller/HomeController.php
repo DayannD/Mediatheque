@@ -28,13 +28,15 @@ class HomeController extends AbstractController
 
         $data = $this->getDoctrine()->getRepository(Livre::class)->findAll();
         
-        $forgot->forgotTake($empruntRepository->empruntProfil($this->getUser()->getId()));
-        $notif = $notificationService->notificationLoan($empruntRepository->empruntProfil($this->getUser()->getId()));
+        if ($this->getUser()) {
+            $forgot->forgotTake($empruntRepository->empruntProfil($this->getUser()->getId()));
+            $notif = $notificationService->notificationLoan($empruntRepository->empruntProfil($this->getUser()->getId()));
 
-        if ($notif) {
-            $this->addFlash(
-                'notice', 'Vous êtes en possesion de livre depuis plus de 3 semaines.Veuillez les rentres merci'
-            );
+            if ($notif) {
+                $this->addFlash(
+                    'notice', 'Vous êtes en possesion de livre depuis plus de 3 semaines.Veuillez les rentres merci'
+                );
+            }
         }
 
         $livre = $paginator->paginate(

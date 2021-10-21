@@ -5,10 +5,12 @@ namespace App\Controller\Admin;
 use App\Entity\Livre;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class LivreCrudController extends AbstractCrudController
 {
@@ -22,16 +24,24 @@ class LivreCrudController extends AbstractCrudController
     {
         return [
 
-            IdField::new('id'),
+            IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Titre'),
             TextField::new('auteur', 'Auteur'),
-            TextField::new('genre', 'Genre'),
+            ChoiceField :: new( 'genre' )
+                            -> setLabel( " Genre" )
+                            -> setChoices([ 
+                                        'Policier' => 'Policier',
+                                        'Autobiograpique' => 'Autobiographique',
+                                        'Amour' => 'Amour',
+                                        'fiction' => 'fiction',
+                                        'Thriller' => 'Thriller'
+                                        ]),
+            textField::new('description', 'Description de l\'oeuvre'),     
             DateTimeField::new('date_parution', 'Date de parution'),
-            ImageField::new('file', 'Image'),
+            TextField::new('imageFile')->setFormtype(VichImageType::class)->onlyWhenCreating(),
+            ImageField::new('file')->setBasePath('/uploads/livres/')->onlyOnIndex(),
             BooleanField::new('dispo', 'Disponibilité'),
 
         ];
-    }
-
-    
+    }    
 }

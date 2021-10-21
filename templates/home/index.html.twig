@@ -31,7 +31,7 @@
   <div class="row row-cols-1 row-cols-md-3 g-4 " style="margin-top: 5%;justify-content: space-between">
 		{% for livres in livre %}
 			<div class="card" style="width: 18rem;padding: 0;margin-top: 10px">
-        <img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="card-img-top" alt="...">
+        <img src="{{ vich_uploader_asset(livres, 'imageFile') }}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ livres.getTitle }}</h5>
           <p class="card-text text-muted">{{ livres.getAuteur }}</p>
@@ -59,7 +59,7 @@
         <li class="list-group-item">Connecter vous pour emprunter</li>
         </ul>
         <div class="card-body">        
-            <a href="/disable/{{ livres.getId }}" class="btn btn-primary">Se connecter</a>
+            <a href="/login" class="btn btn-primary">Se connecter</a>
         {% endif %}
         </div>
       </div>         

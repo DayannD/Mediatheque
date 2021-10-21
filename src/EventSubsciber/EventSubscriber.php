@@ -36,13 +36,11 @@ class EasyAdminSubscriber extends Event
     {
         $entity = $event->getEntityInstance();
 
-        if (!($entity instanceof Emprunt)) {
-            return;
+        if (($entity instanceof Emprunt)) {
+            $this->setDispo($entity);
         }
 
-        $this->setDispo($entity);
-        // $slug = $this->slugger->slugify($entity->getTitle());
-        // $entity->setSlug($slug);
+        return;
     }
 
     public function setDispo(Emprunt $entity): void
@@ -52,4 +50,5 @@ class EasyAdminSubscriber extends Event
 
         $livre->setDispo(true);     
     }
+
 }

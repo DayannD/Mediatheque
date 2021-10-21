@@ -25,15 +25,15 @@ class ForgotTakeService
   public function forgotTake($emprunt)
   {
     $now = new DateTime();
-    
-    for ($i=0; $i < sizeof($emprunt) ; $i++) { 
+  
+      for ($i=0; $i < sizeof($emprunt) ; $i++) { 
       
-      $result = $now->diff($emprunt[$i]->getDateEmprunt(),true)->days;
-      if ($result > 3 && $emprunt[$i]->getIsLoan() == false) {
-        $this->livreRepository->resetBook($emprunt[$i]->getNameLivre());   
-        $this->empruntRepository->deleteEmprunt($emprunt[$i]->getId(),$emprunt[$i]->getNameLivre());
+        $result = $now->diff($emprunt[$i]->getDateEmprunt(),true)->days;
+        if ($result > 3 && $emprunt[$i]->getIsLoan() == false) {
+          $this->livreRepository->resetBook($emprunt[$i]->getNameLivre());   
+          $this->empruntRepository->deleteEmprunt($emprunt[$i]->getId(),$emprunt[$i]->getNameLivre());
+        }
       }
-    }
-    
+
   }
 }

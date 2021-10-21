@@ -49,3 +49,15 @@ https://symfony.com/doc/current/frontend.html
 ```bash
 $ php bin/phpunit --coverage-html var/log/test/test-coverage
 ```
+
+## Utilisation de VichUploaderBundle
+
+```bash
+$ composer require vich/uploader-bundle
+```
+
+### Documentation
+
+Pour la documentation d'utilisation, voir:
+
+https://github.com/dustin10/VichUploaderBundle/blob/master/docs/index.md
