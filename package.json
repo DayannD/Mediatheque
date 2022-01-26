@@ -3,6 +3,7 @@
         "@popperjs/core": "^2.10.2",
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
+        "@types/google.maps": "^3.47.3",
         "core-js": "^3.0.0",
         "jquery": "^3.6.0",
         "node-sass": "^6.0.1",

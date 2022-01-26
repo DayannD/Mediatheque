@@ -2,7 +2,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Médiathèque</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -12,6 +14,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/search">Search</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/map">Lieux</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,7 +45,9 @@
             </li>
           </ul>
           {% if app.user %}
-          <a class="dropdown-toggle d-flex align-items-end hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="dropdown-toggle d-flex align-items-end hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" 
+            data-bs-toggle="dropdown" aria-expanded="false"
+          >
             <img src="https://mdbootstrap.com/img/new/avatars/2.jpg" class="rounded-circle" height="25" alt="" loading="lazy"/>
           </a>
           <ul id="profile" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
@@ -57,7 +64,7 @@
             </li>
           </ul>
           {% else %}
-            <a class=" d-flex align-items-end hidden-arrow" href="/login" role="button">Se connecter</a>
+            <a class=" d-flex align-items-end hidden-arrow" href="/login" role="button"><button class="btn btn-success">Se connecter</button></a>
           {% endif %}
         </div>
 

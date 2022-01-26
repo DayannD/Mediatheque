@@ -1,16 +1,21 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello HomeController!{% endblock %}
-
 {% block body %}
 <div class="container">
 	<div class="text-center">
 		<h1>Bienvenue à la Médiathèque</h1>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-			      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-			      fugiat nulla pariatur.
+			Espace de 1000 m² situé dans le quartier de Chambéry, la Médiathèque d’Ornon est un outil culturel riche, conçu pour favoriser la lecture, 
+      l'ouverture au monde musical et audiovisuel et l'initiation aux nouvelles technologies, mais aussi lieu de loisirs, de convivialité,
+       de détente et d'accès à l'information.
+    </p>
+    <p>
+      Vous pouvez assister, tout au long de l'année aux différentes manifestations culturelles gratuites proposées par la Médiathèque d'Ornon : concerts, ateliers de lecture et d'écriture, contes, animations multimédia.
+
+      Les collections proposées sont importantes (environ 70000 documents), multisupport et très actualisées. Tous les documents sont en libre accès et disponibles au prêt. Le service est entièrement gratuit pour les villenavais et pour les enfants de moins de 18 ans.
+
+      Un fonds local et régional assez riche est accessible dans nos locaux, ainsi qu'un fonds en occitan.
 		</p>
+    <p>
 	</div>
 	<div class="text-center" style="margin-top: 5%;">
 			<a href="/Romans"><button type="button" class="btn btn-outline-success " data-mdb-ripple-color="#000000">Romans</button></a>
@@ -55,14 +60,9 @@
         </div>
       </div>         
 		{% endfor %}
-
 	</div>
 </div>
-
 <div class="d-flex justify-content-center" style="margin-top: 20px">
     {{ knp_pagination_render(livre) }}
 </div>
-
-
-
 {% endblock %}

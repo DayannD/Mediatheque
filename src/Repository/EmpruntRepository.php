@@ -48,6 +48,7 @@ class EmpruntRepository extends ServiceEntityRepository
     //Ma function pour afficher les emprunts à l'inscrit
     public function empruntProfil($id)
     {
+        // dd($id);
         return $this->createQueryBuilder('e')
             ->select('e')
             ->where('e.email = :id')
